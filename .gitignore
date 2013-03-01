@@ -2,7 +2,9 @@
 nbproject
 manifest.mf
 build.xml
+atlassian-ide-plugin.xml
 
 .project
 .settings
 .idea/*
+*.iml

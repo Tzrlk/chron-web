@@ -1,15 +1,9 @@
-run([
-
-    'angular_js',
-    'bootstrap_js',
-    'bootstrap_css',
-
-    'modules/actions/module-actions.js',
-    'modules/forum/module-forum.js',
-    'modules/main/module-main.js',
-    'modules/wiki/module-wiki.js'
-
-], function(SC) {
+require([
+    'modules/actions/module-actions',
+    'modules/forum/module-forum',
+    'modules/main/module-main',
+    'modules/wiki/module-wiki'
+], function() {
     'use strict';
 
     SC.app = angular.module('app', [ 'actions', 'forum', 'main', 'wiki', 'ui' ]);

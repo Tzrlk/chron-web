@@ -9,12 +9,20 @@ var http = require('http'),
     stat = require('node-static');
 
 // setup the file server
-var fileServer = new (stat.Server)(path);
+var fileServer = new stat.Server(path);
 
 // define the callback for the http server
 function serveFile(request, response) {
     request.addListener('end', function () {
-        fileServer.serve(request, response);
+        fileServer.serve(request, response, function(err, result) {
+            if (err) {
+                console.log("Error serving " + request.url + " - " + err.message);
+
+                // Respond to the client
+                response.writeHead(err.status, err.headers);
+                response.end();
+            }
+        });
     });
 }
 

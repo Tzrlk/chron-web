@@ -1,16 +1,25 @@
 'use strict';
 
+// initialise the context and port vars
 var path = './app' || process.env.CONTEXT;
 var port = 8000 || process.env.PORT;
 
-var server = new (require('node-static').Server)(path);
+// initialise the required modules
+var http = require('http'),
+    stat = require('node-static');
 
-require('http')
-  
-  .createServer(function (request, response) {
+// setup the file server
+var fileServer = new (stat.Server)(path);
+
+// define the callback for the http server
+function serveFile(request, response) {
     request.addListener('end', function () {
-        file.serve(request, response);
+        fileServer.serve(request, response);
     });
-  })
-  
-  .listen(port);
+}
+
+// setup the http server with the provided callback
+var httpServer = http.createServer(serveFile);
+
+// run the http server on the configured port.
+httpServer.listen(port);

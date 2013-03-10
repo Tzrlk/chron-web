@@ -2,9 +2,6 @@
     'use strict';
 
     var resources = {
-        angular_js: '//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js',
-        bootstrap_css: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css',
-        bootstrap_js: '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css'
     };
 
     /**
@@ -15,13 +12,9 @@
     function run(requirements, callback) {
         var args = translate(requirements);
 
-        // add on the callback function.
-        args.push(function() {
+        require(args, function() {
             callback.call(SC, SC);
         });
-
-        // load everything.
-        window.head.js.apply(null, args);
     }
 
     /**

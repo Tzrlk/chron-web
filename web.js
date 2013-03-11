@@ -1,8 +1,8 @@
 'use strict';
 
 // initialise the context and port vars
-var path = './app' || process.env.CONTEXT;
-var port = 8000 || process.env.PORT;
+var path = process.env.CONTEXT || './app';
+var port = process.env.PORT || 8000;
 
 // initialise the required modules
 var http = require('http'),

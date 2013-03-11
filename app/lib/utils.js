@@ -1,11 +1,11 @@
-run([
+define([
 
     'angular_js'
 
 ], function(SC) {
     'use strict';
 
-    SC.app.factory('utils', [ '$compile', function($compile) {
+    return angular.factory('utils', [ '$compile', function($compile) {
         var templates = {};
 
         function template(templateUrl) {

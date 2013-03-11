@@ -1,35 +1,36 @@
-run([
+define([
 
-    'modules/main/home/main-page.js',
-    'modules/main/games/games-list.js',
-    'modules/main/games/games-item.js'
+    'angular_js',
 
-], function(SC) {
+    // controllers
+    '/modules/main/games/games-item.js',
+    '/modules/main/games/games-list.js',
+    '/modules/main/home/home-page.js'
+
+], function(games_item, games_list, main_page) {
     'use strict';
 
     var main = angular.module('main', []);
 
     main.config([ '$routeProvider', function($routeProvider) {
-        var controllers = SC.ensure('controllers');
-
         $routeProvider
 
             .when('/home', {
-                templateUrl: 'modules/main/home/main-page.html',
-                controller: controllers.CoreMainPageController
+                templateUrl: '/modules/main/home/home-page.html',
+                controller: games_item
             })
 
             .when('/games', {
-                templateUrl: 'modules/main/games/games-list.html',
-                controller: controllers.CoreGamesListController
+                templateUrl: '/modules/main/games/games-list.html',
+                controller: games_list
             })
 
             .when('/games/:gameId', {
-                templateUrl: 'modules/main/games/games-item.html',
-                controller: controllers.CoreGamesItemController
+                templateUrl: '/modules/main/games/games-item.html',
+                controller: main_page
             })
 
     } ]);
 
-    SC.ensure('modules').main = main;
+    return main;
 });

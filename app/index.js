@@ -1,23 +1,25 @@
-run([
+define([
 
+    // external requirements
     'angular_js',
-    'bootstrap_js',
-    'bootstrap_css',
 
-    'modules/actions/module-actions.js',
-    'modules/forum/module-forum.js',
-    'modules/main/module-main.js',
-    'modules/wiki/module-wiki.js'
+    // application modules
+    '/modules/actions/module-actions.js',
+    '/modules/forum/module-forum.js',
+    '/modules/main/module-main.js',
+    '/modules/wiki/module-wiki.js'
 
-], function(SC) {
+], function(actions, forum, main, wiki) {
     'use strict';
 
-    SC.app = angular.module('app', [ 'actions', 'forum', 'main', 'wiki', 'ui' ]);
+    var app = angular.module('app', [ 'actions', 'forum', 'main', 'wiki', 'ui' ]);
 
-    SC.app.config([ '$routeProvider', function($routeProvider) {
+    app.config([ '$routeProvider', function($routeProvider) {
 
         // When in doubt, redirect home.
         $routeProvider.otherwise({ redirectTo: '/home' });
 
     } ]);
+
+    return app;
 });

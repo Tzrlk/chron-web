@@ -1,11 +1,11 @@
-run([
+define([
 
     'angular_js'
 
-], function(SC) {
+], function() {
     'use strict';
 
-    SC.ensure('controllers').CoreGamesListController = [ '$scope' , function($scope) {
+    return [ '$scope' , function($scope) {
         //
     } ];
 });
